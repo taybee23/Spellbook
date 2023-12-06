@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.spellbook.Card;
 import com.example.spellbook.User;
 
-@Database(entities = {Card.class, User.class}, version = 2)
+@Database(entities = {Card.class, User.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "Card.db";
     public static final String CARD_TABLE = "card_table";

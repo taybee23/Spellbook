@@ -86,12 +86,10 @@
         android:layout_height="49dp"
         android:layout_marginTop="4dp"
         android:text="Admin"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAddCardButton"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/mainAddCardButton"/>
 
     <EditText
         android:id="@+id/mainCardNameEditText"

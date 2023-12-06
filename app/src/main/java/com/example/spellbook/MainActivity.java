@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button mLogout;
 
+    Button mAdmin;
+
     CardDAO mCardDAO;
 
     List<Card> mCardList;
@@ -80,6 +82,13 @@ public class MainActivity extends AppCompatActivity {
         mCardText = binding.mainCardTextEditText;
         mAddACard = binding.mainAddCardButton;
         mLogout = binding.mainLogoutButton;
+        mAdmin = binding.mainAdminButton;
+
+        if(mUser.isAdmin()){
+       mAdmin.setVisibility(View.VISIBLE);
+        }else{
+         mAdmin.setVisibility(View.GONE);
+       }
 
         mMainDisplay.setMovementMethod(new ScrollingMovementMethod());
 
@@ -138,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
         //do we have any users at all?
         List<User> users = mCardDAO.getAllUsers();
         if(users.size() <= 0){
-            User defaultUser = new User("testuser1", "testuser1");
-            User altUser = new User("admin2", "admin2");
+            User defaultUser = new User("testuser1", "testuser1", false);
+            User altUser = new User("admin2", "admin2", true);
             mCardDAO.insert(defaultUser,altUser);
         }
 

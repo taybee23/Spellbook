@@ -15,9 +15,12 @@ public class User {
 
     private String mPassword;
 
-    public User(String userName, String password) {
+    private boolean mIsAdmin;
+
+    public User(String userName, String password, boolean isAdmin) {
         mUserName = userName;
         mPassword = password;
+        mIsAdmin = isAdmin;
     }
 
     public int getUserId() {
@@ -42,5 +45,13 @@ public class User {
 
     public void setPassword(String password) {
         mPassword = password;
+    }
+
+    public boolean isAdmin() {
+        return mIsAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        mIsAdmin = admin;
     }
 }
