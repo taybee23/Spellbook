@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".CardsFragment"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/cardFragment_textViewUserCardsMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="75dp"
+        android:text="User's Cards"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/cardFragment_textViewCardLogDisplay"
+        android:layout_width="345dp"
+        android:layout_height="463dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="180dp"
+        android:scrollbars="vertical"
+        android:text="@string/card_collection_message"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/cardFragment_buttonAddCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="18dp"
+        android:text="Add card" />
+
+    <Button
+        android:id="@+id/cardFragment_buttonAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="18dp"
+        android:text="Admin" />
+
+    <Button
+        android:id="@+id/cardFragment_buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="18dp"
+        android:text="Card Search" />
+
+    <Button
+        android:id="@+id/cardFragment_buttonCollectionStats"
+        android:layout_width="173dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="118dp"
+        android:text="View Collection Stats"
+        android:textSize="10sp" />
+</FrameLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".DecksFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/deckFragment_textViewUserDecksMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="75dp"
+        android:text="User's Decks"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/deckFragment_buttonAddDeck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="18dp"
+        android:text="Add Deck" />
+
+    <TextView
+        android:id="@+id/deckFragment_textViewDeckLogDisplay"
+        android:layout_width="345dp"
+        android:layout_height="463dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="125dp"
+        android:scrollbars="vertical"
+        android:text="@string/decks"
+        android:textColor="@color/white" />
+
+</FrameLayout>

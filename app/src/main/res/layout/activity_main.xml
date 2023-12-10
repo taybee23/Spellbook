@@ -4,145 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
-    <EditText
-        android:id="@+id/mainCardTextEditText"
-        android:layout_width="362dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/mainCardTextHint"
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainCardRarityEditText" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/mainCardRarityEditText"
-        android:layout_width="362dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/mainCardRarityHint"
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainCardManaCostEditText" />
-
-    <EditText
-        android:id="@+id/mainCardManaCostEditText"
-        android:layout_width="362dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/mainCardManaCostHint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainCardTypeEditText" />
-
-    <TextView
-        android:id="@+id/mainMessage"
-        android:layout_width="102dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:text="My Cards"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAppNameDisplay" />
-
-    <TextView
-        android:id="@+id/mainCardLogDisplay"
-        android:layout_width="345dp"
-        android:layout_height="235dp"
-        android:layout_marginTop="128dp"
-        android:scrollbars="vertical"
-        android:text="@string/card_collection_message"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/mainAddCardButton"
-        android:layout_width="124dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="4dp"
-        android:text="Add a card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainCardTextEditText" />
-
-    <Button
-        android:id="@+id/mainAdminButton"
-        android:layout_width="124dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="4dp"
-        android:text="Admin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAddCardButton"/>
-
-    <EditText
-        android:id="@+id/mainCardNameEditText"
-        android:layout_width="360dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/mainCardNameHint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainCardLogDisplay" />
-
-    <EditText
-        android:id="@+id/mainCardTypeEditText"
-        android:layout_width="362dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/mainCardTypeHint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainCardNameEditText" />
-
-    <TextView
-        android:id="@+id/mainAppNameDisplay"
-        android:layout_width="124dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/app_name"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/mainLogoutButton"
-        android:layout_width="95dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/logout_button"
-        app:layout_constraintBottom_toTopOf="@+id/mainCardLogDisplay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/mainAppNameDisplay"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:menu="@menu/bottom_nav_menu"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

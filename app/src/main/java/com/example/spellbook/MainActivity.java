@@ -3,7 +3,11 @@ package com.example.spellbook;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 
 import android.content.Context;
@@ -31,22 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String USER_ID_KEY = "com.example.spellbook.userIdKey";
     private static final String PREFERENCES_KEY = "com.example.spellbook.PREFERENCES_KEY";
 
-
     ActivityMainBinding binding;
-
-    TextView mMainDisplay;
-
-    EditText mCardName;
-    EditText mCardType;
-    EditText mCardManaCost;
-    EditText mCardRarity;
-    EditText mCardText;
-
-    Button mAddACard;
-
-    Button mLogout;
-
-    Button mAdmin;
 
     CardDAO mCardDAO;
 
@@ -57,8 +46,13 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
 
     private User mUser;
+    TextView mMainDisplay;
 
-    private Menu mOptionsMenu;
+    EditText mCardName;
+    EditText mCardType;
+    EditText mCardManaCost;
+    EditText mCardRarity;
+    EditText mCardText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,56 +67,40 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        replaceFragment(new CardsFragment());
 
-        mMainDisplay = binding.mainCardLogDisplay;
-        mCardName = binding.mainCardNameEditText;
-        mCardType = binding.mainCardTypeEditText;
-        mCardManaCost = binding.mainCardManaCostEditText;
-        mCardRarity = binding.mainCardRarityEditText;
-        mCardText = binding.mainCardTextEditText;
-        mAddACard = binding.mainAddCardButton;
-        mLogout = binding.mainLogoutButton;
-        mAdmin = binding.mainAdminButton;
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
 
-        if(mUser.isAdmin()){
-       mAdmin.setVisibility(View.VISIBLE);
-        }else{
-         mAdmin.setVisibility(View.GONE);
-       }
-
-        mMainDisplay.setMovementMethod(new ScrollingMovementMethod());
-
-        refreshDisplay();
-
-        mAddACard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                submitCard();
-                refreshDisplay();
+            if (itemId == R.id.cards){
+                replaceFragment(new CardsFragment());
+            } else if (itemId == R.id.decks) {
+                replaceFragment(new DecksFragment());
+            } else if (itemId == R.id.settings) {
+                replaceFragment(new SettingsFragment());
+            } else if (itemId == R.id.logout) {
+                replaceFragment(new LogoutFragment());
             }
+
+            return true;
         });
 
-        mLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logoutUser();
-                refreshDisplay();
-            }
-        });
+    }//end of onCreate
+
+    private void replaceFragment(Fragment fragment){
+        Bundle bundle = new Bundle();
+        bundle.putInt("userId", mUserId);
+        fragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout,fragment).setReorderingAllowed(true).addToBackStack("name");
+        fragmentTransaction.commit();
     }
 
     private void loginUser(int userId) {
         mUser = mCardDAO.getUserByUserId(userId);
         invalidateOptionsMenu();
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        if(mUser != null){
-            MenuItem item = menu.findItem(R.id.userMenuLogout);
-            item.setTitle(mUser.getUserName());
-        }
-        return super.onPrepareOptionsMenu(menu);
     }
 
     private void checkForUser() {
@@ -180,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
         alertBuilder.create().show();
     }
 
-
     private void getDatabase() {
         mCardDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DATABASE_NAME)
                 .allowMainThreadQueries()
@@ -215,25 +192,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.user_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected (@NonNull MenuItem item){
-        int id = item.getItemId();
-
-        if(id == R.id.userMenuLogout){
-            logoutUser();
-            return true;
-        }else{
-            return super.onOptionsItemSelected(item);
-        }
-    }
-
     public static Intent intentFactory(Context context, int userId){
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(USER_ID_KEY, userId);
@@ -259,5 +217,6 @@ public class MainActivity extends AppCompatActivity {
         }
         SharedPreferences.Editor editor = mPreferences.edit();
         editor.putInt(USER_ID_KEY, i);
+        editor.apply();
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cards"
+        android:title="Cards"
+        android:icon="@drawable/baseline_view_column_24"
+        />
+    <item
+        android:id="@+id/decks"
+        android:title="Decks"
+        android:icon="@drawable/baseline_all_inbox_24"
+        />
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@drawable/baseline_settings_24"
+        />
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/baseline_logout_24"
+        />
+</menu>

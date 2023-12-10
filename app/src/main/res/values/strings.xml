@@ -16,4 +16,12 @@
     <string name="logout_button">Logout</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="card_name">Card Name</string>
+    <string name="decks">Decks</string>
+    <string name="no_decks_yet_message">No decks yet..</string>
+    <string name="total_number_of_cards">Total Number of Cards:</string>
+    <string name="delete_collection">Delete collection</string>
+    <string name="delete_account">Delete account</string>
 </resources>
