@@ -23,6 +23,9 @@ public interface CardDAO {
     @Delete
     void delete(Card card);
 
+    @Query("DELETE FROM " + AppDatabase.USER_TABLE + " WHERE mUserName = :username")
+    void deleteUserByUsername(String username);
+
     @Query("SELECT * FROM " + AppDatabase.CARD_TABLE)
     List<Card> getCards();
 

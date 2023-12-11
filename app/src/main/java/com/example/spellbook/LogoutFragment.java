@@ -1,14 +1,21 @@
 package com.example.spellbook;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.spellbook.DB.AppDatabase;
+import com.example.spellbook.DB.CardDAO;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +32,10 @@ public class LogoutFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private int mUserId;
+    private User mUser;
+
+    CardDAO mCardDAO;
 
     public LogoutFragment() {
         // Required empty public constructor
@@ -62,16 +73,37 @@ public class LogoutFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_logout, container, false);
 
+        mUserId = getArguments().getInt("userId", -1);
+        getDatabase();
+
+        mUser = mCardDAO.getUserByUserId(mUserId);
+
         Button mLogout = v.findViewById(R.id.logoutFragment_buttonLogout);
 
         mLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Goodbye!", Toast.LENGTH_SHORT).show();
+                logout();
             }
         });
 
 
         return v;
     }
+
+    private void logout() {
+        mUserId = -1;
+
+        startActivity(new Intent(requireContext(), LoginActivity.class));
+        requireActivity().finish();
+    }
+
+    private void getDatabase() {
+        mCardDAO = Room.databaseBuilder(requireContext(), AppDatabase.class, AppDatabase.DATABASE_NAME)
+                .allowMainThreadQueries()
+                .build()
+                .CardDAO();
+    }
 }
+

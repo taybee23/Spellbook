@@ -97,8 +97,9 @@ public class DecksFragment extends Fragment {
         mDeckLogDisplay = v.findViewById(R.id.deckFragment_textViewDeckLogDisplay);
         mDeckUserMsg = v.findViewById(R.id.deckFragment_textViewUserDecksMessage);
 
-        mDeckUserMsg.setText(mUser.getUserName() + "'s Decks");
         mDeckLogDisplay.setMovementMethod(new ScrollingMovementMethod());
+
+        mDeckUserMsg.setText(mUser.getUserName() + "'s Decks");
 
         mAddADeck.setOnClickListener(new View.OnClickListener() {
             @Override

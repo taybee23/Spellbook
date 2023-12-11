@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 
 import android.text.method.ScrollingMovementMethod;
@@ -123,15 +125,24 @@ public class CardsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Add a card", Toast.LENGTH_SHORT).show();
-
-
             }
         });
 
         mAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Admin", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putInt("userId", mUserId);
+
+                AdminFragment adminFragment = new AdminFragment();
+                adminFragment.setArguments(bundle);
+                FragmentTransaction transaction = getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction();
+
+                transaction.replace(R.id.frame_layout,adminFragment)
+                        .addToBackStack("name")
+                        .commit();
             }
         });
 

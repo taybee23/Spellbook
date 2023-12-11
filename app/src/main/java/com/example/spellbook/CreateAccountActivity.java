@@ -58,7 +58,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     }else{
                         User newUser = new User(mUsername, mPassword, mIsAdmin);
                         mCardDAO.insert(newUser);
-                        Intent intent = MainActivity.intentFactory(getApplicationContext(), newUser.getUserId()); //this is not taking us to mainActivity
+                        Intent intent = LoginActivity.intentFactory(getApplicationContext()); //this is not taking us to mainActivity
                         startActivity(intent);
                     }
                 }

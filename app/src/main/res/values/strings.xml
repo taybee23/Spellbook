@@ -13,6 +13,7 @@
     <string name="logout">Logout?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="confirm_delete">Are you sure you want to delete this user?</string>
     <string name="logout_button">Logout</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
@@ -24,4 +25,5 @@
     <string name="total_number_of_cards">Total Number of Cards:</string>
     <string name="delete_collection">Delete collection</string>
     <string name="delete_account">Delete account</string>
+    <string name="admin_view_user">admin view: user</string>
 </resources>

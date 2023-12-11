@@ -219,4 +219,8 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt(USER_ID_KEY, i);
         editor.apply();
     }
+
+    public String getUserIdKey(){
+        return USER_ID_KEY;
+    }
 }

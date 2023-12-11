@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".AdminFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/adminFragment_textViewAdminViewMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="75dp"
+        android:text="@string/admin_view_user"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/adminFragment_textViewUserLogDisplay"
+        android:layout_width="345dp"
+        android:layout_height="320dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="125dp"
+        android:scrollbars="vertical"
+        android:text="users"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/adminFragment_editTextDeleteUser"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="450dp"
+        android:hint="Delete a User"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <EditText
+        android:id="@+id/adminFragment_editTextDeleteUserConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="500dp"
+        android:hint="Confirm User"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <Button
+        android:id="@+id/adminFragment_buttonDeleteUser"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_marginLeft="145dp"
+        android:layout_marginTop="570dp"
+        android:text="Delete a User" />
+
+</FrameLayout>
