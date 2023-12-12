@@ -3,10 +3,20 @@ package com.example.spellbook;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.spellbook.DB.AppDatabase;
+import com.example.spellbook.DB.CardDAO;
+
+import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +33,20 @@ public class AddCardFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    CardDAO mCardDAO;
+
+    private User mUser;
+
+    private int mUserId;
+
+    EditText mCardName;
+    EditText mCardType;
+    EditText mCardManaCost;
+    EditText mCardRarity;
+    EditText mCardText;
+
+    Button mAddCard;
 
     public AddCardFragment() {
         // Required empty public constructor
@@ -58,7 +82,56 @@ public class AddCardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_card, container, false);
+        View v = inflater.inflate(R.layout.fragment_add_card, container, false);
+
+        mUserId = getArguments().getInt("userId", -1);
+        getDatabase();
+
+        mUser = mCardDAO.getUserByUserId(mUserId);
+
+        mCardName = v.findViewById(R.id.addCardFragment_editTextCardName);
+        mCardType = v.findViewById(R.id.addCardFragment_editTextCardType);
+        mCardManaCost = v.findViewById(R.id.addCardFragment_editTextCardManaCost);
+        mCardRarity = v.findViewById(R.id.addCardFragment_editTextCardRarity);
+        mCardText = v.findViewById(R.id.addCardFragment_editTextCardText);
+        mAddCard = v.findViewById(R.id.addCardFragment_buttonAddCard);
+
+        mAddCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitCard();
+
+                Toast.makeText(getActivity(), "Card " + mCardName.getText().toString() + " added", Toast.LENGTH_SHORT).show();
+
+                mCardName.setText("");
+                mCardType.setText("");
+                mCardManaCost.setText("");
+                mCardRarity.setText("");
+                mCardText.setText("");
+            }
+        });
+
+        return v;
+    }
+
+    private void getDatabase() {
+        mCardDAO = Room.databaseBuilder(requireContext(), AppDatabase.class, AppDatabase.DATABASE_NAME)
+                .allowMainThreadQueries()
+                .build()
+                .CardDAO();
+    }
+
+    private void submitCard(){
+        String cardName = mCardName.getText().toString();
+        String cardType = mCardType.getText().toString();
+        String cardManaCost = mCardManaCost.getText().toString();
+        String cardRarity = mCardRarity.getText().toString();
+        String cardText = mCardText.getText().toString();
+
+        Card card = new Card(cardName,cardType,cardManaCost,cardRarity,cardText, mUserId);
+
+        card.setUserId(mUser.getUserId());
+
+        mCardDAO.insert(card);
     }
 }

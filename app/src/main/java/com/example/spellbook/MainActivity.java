@@ -127,7 +127,20 @@ public class MainActivity extends AppCompatActivity {
         if(users.size() <= 0){
             User defaultUser = new User("testuser1", "testuser1", false);
             User altUser = new User("admin2", "admin2", true);
+            Card testCard = new Card
+                    ("Mountain", "Land", "0R",
+                            "common","Tap to add 1R mana",2);
+            Card testCard2 = new Card
+                    ("Mountain", "Basic Land", "0R",
+                            "common","Tap to add 1R mana",2);
+            Card testCard3 = new Card
+                    ("Island", "Land", "0B",
+                            "common","Tap to add 1B mana",2);
+            Card testCard4 = new Card
+                    ("Sol Ring", "Artifact", "2C",
+                            "common","Tap to add 2C mana",2);
             mCardDAO.insert(defaultUser,altUser);
+            mCardDAO.insert(testCard,testCard2,testCard3,testCard4);
         }
 
         Intent intent = LoginActivity.intentFactory(this);

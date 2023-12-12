@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".CardSearchFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/cardSearchFragment_textViewSearchMessage"
+        android:layout_width="287dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="75dp"
+        android:text="Search for a card in your collection"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/cardSearchFragment_textViewSearchResultsDisplay"
+        android:layout_width="345dp"
+        android:layout_height="346dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="350dp"
+        android:scrollbars="vertical"
+        android:text="Results:"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/cardSearchFragment_editTextCardName"
+        android:layout_width="272dp"
+        android:layout_height="59dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="150dp"
+        android:hint="Name"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <EditText
+        android:id="@+id/cardSearchFragment_editTextCardColor"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="200dp"
+        android:hint="Color"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <EditText
+        android:id="@+id/cardSearchFragment_editTextCardRarity"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="200dp"
+        android:hint="Rarity"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <EditText
+        android:id="@+id/cardSearchFragment_editTextCardType"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="200dp"
+        android:hint="Type"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <Button
+        android:id="@+id/cardSearchFragment_buttonClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="18dp"
+        android:text="Clear" />
+
+    <Button
+        android:id="@+id/cardSearchFragment_buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="275dp"
+        android:text="Search" />
+
+</FrameLayout>

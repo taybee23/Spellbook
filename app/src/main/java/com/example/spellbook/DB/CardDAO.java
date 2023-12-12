@@ -26,14 +26,32 @@ public interface CardDAO {
     @Query("DELETE FROM " + AppDatabase.USER_TABLE + " WHERE mUserName = :username")
     void deleteUserByUsername(String username);
 
+    @Query("DELETE FROM " + AppDatabase.CARD_TABLE + " WHERE mUserId = :userId")
+    void deleteCardsByUserId(int userId);
+
     @Query("SELECT * FROM " + AppDatabase.CARD_TABLE)
     List<Card> getCards();
 
     @Query("SELECT * FROM " + AppDatabase.CARD_TABLE + " WHERE mCardId = :cardId")
     List<Card> getCardById(int cardId);
 
-    @Query("SELECT * FROM " + AppDatabase.CARD_TABLE + " WHERE mUserId = :cardId")
-    List<Card> getCardByUserId(int cardId);
+    @Query("SELECT * FROM " + AppDatabase.CARD_TABLE + " WHERE mUserId = :userId")
+    List<Card> getCardByUserId(int userId);
+
+    @Query("SELECT * FROM " + AppDatabase.CARD_TABLE + " WHERE mCardName = :name")
+    List<Card> getCardByName(String name);
+
+    @Query("SELECT * FROM " + AppDatabase.CARD_TABLE + " WHERE mCardType = :type")
+    List<Card> getCardByType(String type);
+
+    @Query("SELECT * FROM " + AppDatabase.CARD_TABLE + " WHERE mCardRarity = :rarity")
+    List<Card> getCardByRarity(String rarity);
+
+    @Query("SELECT * FROM " + AppDatabase.CARD_TABLE + " WHERE mCardManaCost = :color")
+    List<Card> getCardByColor(String color);
+
+    @Query("SELECT * FROM " + AppDatabase.CARD_TABLE + " WHERE (mCardName = :name OR :name IS NULL) " + " OR (mCardManaCost = :color OR :color IS NULL) " + " OR (mCardType = :type OR :type IS NULL)" + " OR (mCardRarity = :rarity OR :rarity IS NULL)")
+    List<Card> searchCollection(String name, String type, String color, String rarity);
 
     @Insert
     void insert(User...users);

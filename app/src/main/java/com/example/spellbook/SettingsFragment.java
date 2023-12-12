@@ -1,5 +1,6 @@
 package com.example.spellbook;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -100,14 +101,19 @@ public class SettingsFragment extends Fragment {
         mDeleteCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Delete collection?", Toast.LENGTH_SHORT).show();
+                mCardDAO.deleteCardsByUserId(mUserId);
+                Toast.makeText(getActivity(), "Collection deleted", Toast.LENGTH_SHORT).show();
             }
         });
 
         mDeleteAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Delete Account?", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Goodbye,forever.....", Toast.LENGTH_SHORT).show();
+                mCardDAO.deleteUserByUsername(mUser.getUserName());
+
+                startActivity(new Intent(requireContext(), LoginActivity.class));
+                requireActivity().finish();
             }
         });
 
@@ -126,8 +132,7 @@ public class SettingsFragment extends Fragment {
                 count++;
             }
 
-            sb.append("Total Number of Cards: ").append(count);
-            mTotalCardDisplay.setText("Total Number of Cards: ");
+            mTotalCardDisplay.setText("Total Number of Cards: " + count);
         }else{
             mTotalCardDisplay.setText("Total Number of Cards: 0");
         }

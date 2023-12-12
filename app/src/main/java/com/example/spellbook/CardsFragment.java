@@ -124,7 +124,18 @@ public class CardsFragment extends Fragment {
         mAddACard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Add a card", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putInt("userId", mUserId);
+
+                AddCardFragment addCardFragment = new AddCardFragment();
+                addCardFragment.setArguments(bundle);
+                FragmentTransaction transaction = getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction();
+
+                transaction.replace(R.id.frame_layout,addCardFragment)
+                        .addToBackStack("name")
+                        .commit();
             }
         });
 
@@ -149,7 +160,18 @@ public class CardsFragment extends Fragment {
         mCardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Searching..", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putInt("userId", mUserId);
+
+                CardSearchFragment searchFragment = new CardSearchFragment();
+                searchFragment.setArguments(bundle);
+                FragmentTransaction transaction = getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction();
+
+                transaction.replace(R.id.frame_layout,searchFragment)
+                        .addToBackStack("name")
+                        .commit();
             }
         });
 
