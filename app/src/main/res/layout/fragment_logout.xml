@@ -6,7 +6,6 @@
     android:background="@color/black"
     tools:context=".LogoutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <Button
         android:id="@+id/logoutFragment_buttonLogout"
         android:layout_width="wrap_content"

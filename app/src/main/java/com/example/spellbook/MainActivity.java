@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
 
         getDatabase();
 
@@ -128,19 +127,28 @@ public class MainActivity extends AppCompatActivity {
             User defaultUser = new User("testuser1", "testuser1", false);
             User altUser = new User("admin2", "admin2", true);
             Card testCard = new Card
-                    ("Mountain", "Land", "0R",
-                            "common","Tap to add 1R mana",2);
+                    ("Mountain", "Land", "0",
+                            "Common","Tap to add 1 red mana",2);
             Card testCard2 = new Card
-                    ("Mountain", "Basic Land", "0R",
-                            "common","Tap to add 1R mana",2);
+                    ("Treasonous Orge", "Creature", "3C1R",
+                            "Uncommon","Pay 3 Life: Add 1 red mana to your mana pool.",2);
             Card testCard3 = new Card
-                    ("Island", "Land", "0B",
-                            "common","Tap to add 1B mana",2);
+                    ("Purphoros, God of the Forge", "Enchantment Creature", "3C1R",
+                            "Mythic","Whenever another creature enters the battlefield under your control, Purphoros deals 2 damage to each opponent.",2);
             Card testCard4 = new Card
                     ("Sol Ring", "Artifact", "2C",
-                            "common","Tap to add 2C mana",2);
+                            "Common","Tap to add 2 colorless mana",2);
+            Card testCard5 = new Card
+                    ("Goblin Piledriver", "Creature", "1C1R",
+                            "Rare","Whenever Goblin Piledriver attacks, it gets +2/+0 until end of turn for each other attacking Goblin.",2);
+            Card testCard6 = new Card
+                    ("Goblin Battle Jester", "Creature", "3C1R",
+                            "Common","Whenever you cast a red spell, target creature can't block this turn.",2);
+            Card testCard7 = new Card
+                    ("Goblin Matron", "Creature", "2C1R",
+                            "Rare","When Goblin Matron enters the battlefield, you may search your library for a Goblin card, reveal that card, put it into your hand, then shuffle.",2);
             mCardDAO.insert(defaultUser,altUser);
-            mCardDAO.insert(testCard,testCard2,testCard3,testCard4);
+            mCardDAO.insert(testCard,testCard2,testCard3,testCard4,testCard5,testCard6,testCard7);
         }
 
         Intent intent = LoginActivity.intentFactory(this);

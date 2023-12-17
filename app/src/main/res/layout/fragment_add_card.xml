@@ -6,7 +6,6 @@
     android:background="@color/black"
     tools:context=".AddCardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/addCardFragment_textViewAddCardMessage"
         android:layout_width="wrap_content"

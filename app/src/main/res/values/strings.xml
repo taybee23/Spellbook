@@ -17,7 +17,6 @@
     <string name="logout_button">Logout</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="card_name">Card Name</string>
     <string name="decks">Decks</string>
@@ -26,4 +25,15 @@
     <string name="delete_collection">Delete collection</string>
     <string name="delete_account">Delete account</string>
     <string name="admin_view_user">admin view: user</string>
+    <string name="deck_name">Deck name</string>
+    <string name="add_card_to_deck">Add card to deck:</string>
+    <string name="back_arrow">back arrow</string>
+    <string name="mana_cost">Mana Cost</string>
+    <string-array name="cards">
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+    </string-array>
 </resources>

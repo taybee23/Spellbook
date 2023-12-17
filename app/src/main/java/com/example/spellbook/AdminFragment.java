@@ -27,12 +27,10 @@ import java.util.List;
  */
 public class AdminFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -68,7 +66,6 @@ public class AdminFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment AdminFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static AdminFragment newInstance(String param1, String param2) {
         AdminFragment fragment = new AdminFragment();
         Bundle args = new Bundle();
@@ -111,10 +108,17 @@ public class AdminFragment extends Fragment {
             public void onClick(View v) {
                 getValuesFromDisplay();
 
-                String userToDelete = mUsername = mDeleteUsername.getText().toString();
+                String userToDelete = mDeleteUsername.getText().toString();
+                String confirmUser = mDeleteUsernameConfirm.getText().toString();
 
-                if(!userToDelete.isEmpty()){
-                    confirmDelete(userToDelete);
+                if(!userToDelete.isEmpty()){ //check for empty username
+                    if(doesUserExist(userToDelete)){ //check for nonexistent user
+                        if(!userToDelete.equals(confirmUser)){ //check for non-matching entries
+                            Toast.makeText(getActivity(), "User name to delete doesn't match", Toast.LENGTH_SHORT).show();
+                        }else{
+                            confirmDelete(userToDelete);
+                        }
+                    }
                 }else{
                     Toast.makeText(getActivity(), "Enter a user to delete", Toast.LENGTH_SHORT).show();
                 }
@@ -124,6 +128,17 @@ public class AdminFragment extends Fragment {
         refreshDisplay();
 
         return v;
+    }
+
+    private boolean doesUserExist(String userToDelete) {
+        mUser = mCardDAO.getUserByUsername(mUsername);
+
+        if(mUser == null){
+            Toast.makeText(getActivity(), "User " + mUsername + " doesn't exist", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
     private void getDatabase() {
@@ -153,6 +168,7 @@ public class AdminFragment extends Fragment {
 
     private void confirmDelete(String userToDelete) {
         mCardDAO.deleteUserByUsername(userToDelete);
+        Toast.makeText(getActivity(), userToDelete + " was deleted", Toast.LENGTH_SHORT).show();
         refreshDisplay();
     }
 }

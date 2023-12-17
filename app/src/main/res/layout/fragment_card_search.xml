@@ -6,7 +6,6 @@
     android:background="@color/black"
     tools:context=".CardSearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/cardSearchFragment_textViewSearchMessage"
         android:layout_width="287dp"
@@ -20,7 +19,7 @@
     <TextView
         android:id="@+id/cardSearchFragment_textViewSearchResultsDisplay"
         android:layout_width="345dp"
-        android:layout_height="346dp"
+        android:layout_height="275dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="350dp"
         android:scrollbars="vertical"
@@ -43,7 +42,7 @@
         android:layout_height="59dp"
         android:layout_marginLeft="45dp"
         android:layout_marginTop="200dp"
-        android:hint="Color"
+        android:hint="@string/mana_cost"
         android:textColor="@color/white"
         android:textColorHint="@color/white"/>
 

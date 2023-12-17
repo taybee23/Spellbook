@@ -34,20 +34,18 @@ import java.util.List;
  */
 public class CardsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    CardDAO mCardDAO;
 
     Button mAddACard;
     Button mAdmin;
     Button mCardSearch;
-    Button mViewCollectionStats;
+
+    CardDAO mCardDAO;
 
     TextView mCardLogDisplay;
     TextView mCardUserMsg;
@@ -70,7 +68,6 @@ public class CardsFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment CardsFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static CardsFragment newInstance(String param1, String param2) {
         CardsFragment fragment = new CardsFragment();
         Bundle args = new Bundle();
@@ -108,7 +105,6 @@ public class CardsFragment extends Fragment {
         mAdmin = v.findViewById(R.id.cardFragment_buttonAdmin);
         mAddACard = v.findViewById(R.id.cardFragment_buttonAddCard);
         mCardSearch = v.findViewById(R.id.cardFragment_buttonSearch);
-        mViewCollectionStats = v.findViewById(R.id.cardFragment_buttonCollectionStats);
         mCardLogDisplay = v.findViewById(R.id.cardFragment_textViewCardLogDisplay);
         mCardUserMsg = v.findViewById(R.id.cardFragment_textViewUserCardsMessage);
 
@@ -175,13 +171,6 @@ public class CardsFragment extends Fragment {
             }
         });
 
-        mViewCollectionStats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "View stats", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         refreshDisplay();
 
         return v;
@@ -206,21 +195,4 @@ public class CardsFragment extends Fragment {
             mCardLogDisplay.setText(R.string.no_cards_message);
         }
     }
-//below this makes app crash
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//        if(context instanceof  CardsFragmentListener){
-//            mListener = (CardsFragmentListener) context;
-//        }else {
-//            throw new RuntimeException(context.toString()
-//            + " must implement CardsFragmentListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
 }

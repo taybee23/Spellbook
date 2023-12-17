@@ -7,7 +7,6 @@
     tools:context=".CardsFragment"
     >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/cardFragment_textViewUserCardsMessage"
         android:layout_width="wrap_content"
@@ -21,9 +20,9 @@
     <TextView
         android:id="@+id/cardFragment_textViewCardLogDisplay"
         android:layout_width="345dp"
-        android:layout_height="463dp"
+        android:layout_height="477dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="118dp"
         android:scrollbars="vertical"
         android:text="@string/card_collection_message"
         android:textColor="@color/white" />
@@ -52,12 +51,4 @@
         android:layout_marginTop="18dp"
         android:text="Card Search" />
 
-    <Button
-        android:id="@+id/cardFragment_buttonCollectionStats"
-        android:layout_width="173dp"
-        android:layout_height="36dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="118dp"
-        android:text="View Collection Stats"
-        android:textSize="10sp" />
 </FrameLayout>

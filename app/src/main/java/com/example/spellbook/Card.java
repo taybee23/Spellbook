@@ -40,12 +40,12 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card # " + mCardId + "\n" +
-                "Card Name: " + mCardName + "\n" +
-                "Card Type: " + mCardType + "\n" +
-                "Card Mana Cost: " + mCardManaCost + "\n" +
-                "Card Rarity: " + mCardRarity + "\n" +
-                "Card Text: " + mCardTextBox + "\n" +
+        return  "Card #" + mCardId + "\n\n" +
+                mCardName + "\n" +
+                mCardType + "\n" +
+                "Mana Cost: " + mCardManaCost + "\n" +
+                "Rarity: " + mCardRarity + "\n" +
+                "Text: " + mCardTextBox + "\n" +
                 "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n";
     }
 

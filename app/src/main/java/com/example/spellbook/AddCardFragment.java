@@ -100,14 +100,6 @@ public class AddCardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 submitCard();
-
-                Toast.makeText(getActivity(), "Card " + mCardName.getText().toString() + " added", Toast.LENGTH_SHORT).show();
-
-                mCardName.setText("");
-                mCardType.setText("");
-                mCardManaCost.setText("");
-                mCardRarity.setText("");
-                mCardText.setText("");
             }
         });
 
@@ -128,10 +120,22 @@ public class AddCardFragment extends Fragment {
         String cardRarity = mCardRarity.getText().toString();
         String cardText = mCardText.getText().toString();
 
-        Card card = new Card(cardName,cardType,cardManaCost,cardRarity,cardText, mUserId);
+        if(cardName.isEmpty() || cardType.isEmpty() || cardManaCost.isEmpty() || cardRarity.isEmpty() ){
+            Toast.makeText(getActivity(), "Failed to add Card: Cards must have a name, type, mana cost and rarity", Toast.LENGTH_SHORT).show();
+        }else{
+            Card card = new Card(cardName,cardType,cardManaCost,cardRarity,cardText, mUserId);
 
-        card.setUserId(mUser.getUserId());
+            card.setUserId(mUser.getUserId());
 
-        mCardDAO.insert(card);
+            mCardDAO.insert(card);
+
+            Toast.makeText(getActivity(), "Card " + mCardName.getText().toString() + " added", Toast.LENGTH_SHORT).show();
+
+            mCardName.setText("");
+            mCardType.setText("");
+            mCardManaCost.setText("");
+            mCardRarity.setText("");
+            mCardText.setText("");
+        }
     }
 }

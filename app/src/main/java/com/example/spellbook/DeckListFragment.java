@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,10 +22,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DecksFragment#newInstance} factory method to
+ * Use the {@link DeckListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DecksFragment extends Fragment {
+public class DeckListFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,20 +36,22 @@ public class DecksFragment extends Fragment {
 
     CardDAO mCardDAO;
 
-    Button mAddADeck;
+    Button mAddCard;
+    Button mDeleteDeck;
+    Button mBack;
+    TextView mDeckNameMsg;
+    TextView mNumCards;
+    TextView mDeckCardList;
 
-    Button mEditDeck;
-
-    TextView mDeckLogDisplay;
-    TextView mDeckUserMsg;
-
-    private DecksFragment.DecksFragmentListener mListener;
     private User mUser;
 
     private int mUserId;
-    List<Deck> mDeckList;
 
-    public DecksFragment() {
+    private int mDeckId;
+
+    List<Card> mCardList;
+
+    public DeckListFragment() {
         // Required empty public constructor
     }
 
@@ -58,10 +61,10 @@ public class DecksFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment DecksFragment.
+     * @return A new instance of fragment DeckListFragment.
      */
-    public static DecksFragment newInstance(String param1, String param2) {
-        DecksFragment fragment = new DecksFragment();
+    public static DeckListFragment newInstance(String param1, String param2) {
+        DeckListFragment fragment = new DeckListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -78,70 +81,65 @@ public class DecksFragment extends Fragment {
         }
     }
 
-    public interface DecksFragmentListener{
-        void onInputASent(CharSequence input);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_decks, container, false);
+        View v = inflater.inflate(R.layout.fragment_deck_list, container, false);
 
         mUserId = getArguments().getInt("userId", -1);
         getDatabase();
 
         mUser = mCardDAO.getUserByUserId(mUserId);
+        mDeckId = getArguments().getInt("deckId", -1);
+        mDeckId = mCardDAO.getDeckIdByUserId(mUserId);
 
-        mAddADeck = v.findViewById(R.id.deckFragment_buttonAddDeck);
-        mDeckLogDisplay = v.findViewById(R.id.deckFragment_textViewDeckLogDisplay);
-        mDeckUserMsg = v.findViewById(R.id.deckFragment_textViewUserDecksMessage);
-        mEditDeck = v.findViewById(R.id.deckFragment_buttonEditDeck1);
+        String deckName = mCardDAO.getDeckNameByUserId(mUserId);
 
-        mDeckLogDisplay.setMovementMethod(new ScrollingMovementMethod());
+        mDeckNameMsg = v.findViewById(R.id.deckListFragment_textViewDeckNameMessage);
+        mAddCard = v.findViewById(R.id.deckListFragment_buttonAddCard);
+        mDeleteDeck = v.findViewById(R.id.deckListFragment_buttonDeleteDeck);
+        mDeckCardList = v.findViewById(R.id.deckListFragment_textViewDeckCardListDisplay);
+        mNumCards = v.findViewById(R.id.deckListFragment_textViewNumCards);
 
-        mDeckUserMsg.setText(mUser.getUserName() + "'s Decks");
-        mDeckList = mCardDAO.getDeckByUserId(mUserId);
 
-        if(!mDeckList.isEmpty()){
-            mAddADeck.setVisibility(View.GONE);
-        }
+        mDeckNameMsg.setText(deckName + " deck");
 
-        if(mDeckList.isEmpty()){
-            mEditDeck.setVisibility(View.GONE);
-        }
+        mDeckCardList.setMovementMethod(new ScrollingMovementMethod());
 
-        mAddADeck.setOnClickListener(new View.OnClickListener() {
+        mAddCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("userId", mUserId);
 
-                AddDeckFragment addDeckFragment = new AddDeckFragment();
-                addDeckFragment.setArguments(bundle);
+                AddCardToDeckFragment addCardToDeckFragment = new AddCardToDeckFragment();
+                addCardToDeckFragment.setArguments(bundle);
                 FragmentTransaction transaction = getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction();
 
-                transaction.replace(R.id.frame_layout,addDeckFragment)
+                transaction.replace(R.id.frame_layout,addCardToDeckFragment)
                         .addToBackStack("name")
                         .commit();
             }
         });
 
-        mEditDeck.setOnClickListener(new View.OnClickListener() {
+        mDeleteDeck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mCardDAO.deleteDecksByUserId(mUserId);
+
                 Bundle bundle = new Bundle();
                 bundle.putInt("userId", mUserId);
 
-                DeckListFragment deckListFragment = new DeckListFragment();
-                deckListFragment.setArguments(bundle);
+                DecksFragment decksFragment = new DecksFragment();
+                decksFragment.setArguments(bundle);
                 FragmentTransaction transaction = getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction();
 
-                transaction.replace(R.id.frame_layout,deckListFragment)
+                transaction.replace(R.id.frame_layout,decksFragment)
                         .addToBackStack("name")
                         .commit();
             }
@@ -160,15 +158,19 @@ public class DecksFragment extends Fragment {
     }
 
     private void refreshDisplay(){
-        mDeckList = mCardDAO.getDeckByUserId(mUserId);
-        if(!mDeckList.isEmpty()){
+        mCardList = mCardDAO.getCardsByDeckId(mDeckId);
+        int count = 0;
+        if(!mCardList.isEmpty()){
             StringBuilder sb = new StringBuilder();
-            for(Deck deck : mDeckList){
-                sb.append(deck.toString());
+            for(Card card : mCardList){
+                sb.append(card.toString());
+                count++;
             }
-            mDeckLogDisplay.setText(sb.toString());
+            mNumCards.setText(count + " cards");
+            mDeckCardList.setText(sb.toString());
         }else{
-            mDeckLogDisplay.setText(R.string.no_decks_yet_message);
+            mNumCards.setText(count + " cards");
+            mDeckCardList.setText("Click 'Add Card' to get started!");
         }
     }
 }

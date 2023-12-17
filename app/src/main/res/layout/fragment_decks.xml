@@ -6,7 +6,6 @@
     android:background="@color/black"
     tools:context=".DecksFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/deckFragment_textViewUserDecksMessage"
         android:layout_width="wrap_content"
@@ -17,14 +16,6 @@
         android:textColor="@color/white"
         android:textSize="25dp" />
 
-    <Button
-        android:id="@+id/deckFragment_buttonAddDeck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="18dp"
-        android:text="Add Deck" />
-
     <TextView
         android:id="@+id/deckFragment_textViewDeckLogDisplay"
         android:layout_width="345dp"
@@ -34,5 +25,21 @@
         android:scrollbars="vertical"
         android:text="@string/decks"
         android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/deckFragment_buttonAddDeck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="18dp"
+        android:text="Add Deck" />
+
+    <Button
+        android:id="@+id/deckFragment_buttonEditDeck1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="120dp"
+        android:text="Edit Deck" />
 
 </FrameLayout>
